@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <h1>To Do List</h1>
+    <div id="sorting">
+        <button class="filter active" data-filter="*" id="all">All</button>
+        <button class="filter" data-filter="false" id="toDo">🔘To Do</button>
+        <button class="filter" data-filter="true" id="done">🟠Done</button>
+    </div>
+    <table id="table">
+        <tbody>
+            
+        </tbody>
+    </table>
+    <div>
+        <input id="new_description" type="text" placeholder="Description">
+        <input id="new_number" type="text" placeholder="Number">
+        <button id="submit">Submit</button>
+    </div>
+
+    <template id="item">
+        <tr>
+            <td data-field="toDo">&#9744</td>
+            <td data-field="description">Description</td>
+            <td data-field="number">Number</td>
+            <td data-id="" id="slet" data-field="delete">&#9746</td>
+        </tr>
+    </template>
+    <template id="empty">
+        <tr>
+            <td data-field="description">Add an item to show a list</td>
+        </tr>
+    </template>
+</body>
+</html>
