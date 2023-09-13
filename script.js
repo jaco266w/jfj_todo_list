@@ -4,12 +4,6 @@ window.addEventListener("DOMContentLoaded", sidenVises);
 
 let allItems = [];
 
-allItems = [
-    {id: 0, toDo: false, description: "Køb mælk" },
-    {id: 1, toDo: false, description: "Køb brød"},
-    {id: 2, toDo: false, description: "Køb ost"},
-    {id: 3, toDo: false, description: "Køb smør"},
-]
 let idCounter = 0
 
 const item = {
