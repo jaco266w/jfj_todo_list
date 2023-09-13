@@ -4,19 +4,19 @@ window.addEventListener("DOMContentLoaded", sidenVises);
 
 let allItems = [];
 
-// allItems = [
-//     {id: 0, toDo: false, description: "Køb mælk", number: "1"},
-//     {id: 1, toDo: false, description: "Køb brød", number: "2"},
-//     {id: 2, toDo: false, description: "Køb ost", number: "3"},
-//     {id: 3, toDo: false, description: "Køb smør", number: "4"},
-// ]
+allItems = [
+    {id: 0, toDo: false, description: "Køb mælk" },
+    {id: 1, toDo: false, description: "Køb brød"},
+    {id: 2, toDo: false, description: "Køb ost"},
+    {id: 3, toDo: false, description: "Køb smør"},
+]
 let idCounter = 0
 
 const item = {
     id: 0,
     toDo: false,
     description: "",
-    number: ""
+    type: ""
 }
 
 const storedItems = localStorage.getItem("allItems");
@@ -30,7 +30,13 @@ if (storedItems) {
 
 function sidenVises() {
     displayList(allItems);
+    
+    document.querySelector("#submit").addEventListener("click", function(event){
+        event.preventDefault()
+      }); 
+    
     document.querySelector("#submit").addEventListener("click", submit);
+    
     document.querySelectorAll(".filter").forEach((button) => {
         button.addEventListener("click", filterClick);
     });
@@ -38,19 +44,35 @@ function sidenVises() {
 }
 
 function submit() {
-    const item2 = {...item};
-    item2.description = document.querySelector("#new_description").value;
-    item2.number = document.querySelector("#new_number").value;
-    item2.id = idCounter++;
+
+    if (document.querySelector("#new_description").value === "" && document.querySelector("#new_type").value === "choose"){
+        document.querySelector("#error").textContent = "Please insert a description and a type for your task"
+        document.querySelector("#error").classList = " ";
+    }
+    else if (document.querySelector("#new_description").value === "") {
+        document.querySelector("#error").textContent = "Please insert a description for your task"
+        document.querySelector("#error").classList = " ";
+    }
+    else if (document.querySelector("#new_type").value === "choose") {
+        document.querySelector("#error").textContent = "Please insert a type for your task"
+        document.querySelector("#error").classList = " ";
+    }
+    else {
+        const item2 = {...item};
+        item2.description = document.querySelector("#new_description").value;
+        item2.type = document.querySelector("#new_type").value;
+        item2.id = idCounter++;
+        
+        allItems.push(item2);
+        displayList(allItems);
+
+        document.querySelector("#form").reset();
+        document.querySelector("#error").classList.add("hide");
+    }
     
-    
-    allItems.push(item2);
-    console.log(allItems);
-    displayList(allItems);
 }
 
 function slet() {
-    console.log("slet");
     const itemId = this.getAttribute("data-id"); // Get the ID of the item to delete
     const foundItem = allItems.indexOf(allItems.find(item => item.id == itemId));
     allItems.splice(foundItem, 1);
@@ -62,7 +84,6 @@ function displayList(items) {
     document.querySelector("#table tbody").innerHTML = "";
 
     if(allItems.length === 0){
-        console.log("lenght 0")
         displayEmpty();
     }
     else {
@@ -78,7 +99,7 @@ function displayItem (item) {
     const clone = document.querySelector("template#item").content.cloneNode(true);
 
     clone.querySelector("[data-field=description]").textContent = item.description;
-    clone.querySelector("[data-field=number]").textContent = item.number;
+    clone.querySelector("[data-field=type]").textContent = item.type;
     clone.querySelector("#slet").dataset.id = item.id;
 
     const toDoIcon = clone.querySelector("[data-field=toDo]");
@@ -89,12 +110,9 @@ function displayItem (item) {
     toDoIcon.addEventListener("click", () => {
         item.toDo = !item.toDo;
         toDoIcon.textContent = item.toDo ? "🟠" : "🔘";
-        console.log(item.toDo);
 
         if( document.querySelector("#all").classList.contains("active")){
-            const filter = "*"; 
-            const filteredItems = filterItems(filter);
-            displayList(filteredItems);
+            displayList(allItems);
         }
         else{
             const filter = !item.toDo === true; 
@@ -131,11 +149,9 @@ function filterClick(event) {
 
 function filterItems(filter) {
     if(filter === "*") {
-        console.log("all items");
         return allItems
     }
     else {
-        console.log("sort");
         return allItems.filter((item) => item.toDo === filter);
     }
 }

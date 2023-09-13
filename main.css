@@ -14,8 +14,104 @@ td {
     border-bottom: 1px solid #ddd;
     padding: 8px;
     text-align: left;
+    font-size: 1.2rem;
 }
 
 tr:last-child {
     border-bottom: none; /* Remove the line for the last row */
+}
+
+.hide {
+    display: none;
+}
+
+#error {
+    color: #ddd;
+    font-style: italic;
+    text-transform: capitalize;
+}
+
+
+
+#title {
+    max-width: 250px;
+    font-size: 2rem;
+    text-transform: capitalize;
+
+    color: whitesmoke;
+
+    background-color: transparent;
+    border: none;
+
+    margin-bottom: 20px;
+}
+
+#title:focus {
+    outline: none;
+}
+
+#title::placeholder {
+    color: #ddd;
+    font-style: italic;
+}
+
+form input {
+    background-color: transparent;
+    border: none;
+
+
+    color: #777777;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    padding: 5px;
+    max-width: 100px;
+}
+
+form input:focus {
+    outline: none;
+    color: #777777;
+}
+
+form select {
+    background-color: transparent;
+    border: none;
+
+    color: #777777;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    padding: 5px;
+    max-width: fit-content;
+}
+
+form select:focus {
+    outline: none;
+}
+
+button {
+    background-color: transparent;
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+    border-radius: 0px;
+
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: whitesmoke;
+    color: rgb(37, 37, 37);
+}
+
+#sorting button {
+    padding: 10px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+form button {
+    padding: 10px;
+}
+
+.active {
+    background-color: whitesmoke;
+    color: rgb(37, 37, 37);
 }
