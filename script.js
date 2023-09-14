@@ -18,7 +18,7 @@ if (storedItems) {
     allItems = JSON.parse(storedItems);
     
     if (allItems.length === 0) {
-    idCounter = 1;
+    idCounter = 0;
     } 
     else {
     idCounter = Math.max(...allItems.map(item => item.id)) + 1;
