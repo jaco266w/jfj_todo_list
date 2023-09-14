@@ -72,7 +72,7 @@ function submit() {
 }
 
 function slet() {
-    const itemId = this.getAttribute("data-id"); // Get the ID of the item to delete
+    const itemId = this.getAttribute("data-id");
     const foundItem = allItems.indexOf(allItems.find(item => item.id == itemId));
     allItems.splice(foundItem, 1);
 
@@ -105,7 +105,6 @@ function displayItem (item) {
     toDoIcon.textContent = item.toDo ? "🟠" : "🔘";
 
 
-    // TODO: Add event listener to click on star
     toDoIcon.addEventListener("click", () => {
         item.toDo = !item.toDo;
         toDoIcon.textContent = item.toDo ? "🟠" : "🔘";
