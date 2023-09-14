@@ -16,7 +16,13 @@ const item = {
 const storedItems = localStorage.getItem("allItems");
 if (storedItems) {
     allItems = JSON.parse(storedItems);
+    
+    if (allItems.length === 0) {
+    idCounter = 1;
+    } 
+    else {
     idCounter = Math.max(...allItems.map(item => item.id)) + 1;
+}
 }
 
 
