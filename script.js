@@ -33,9 +33,8 @@ function sidenVises() {
     
     document.querySelector("#submit").addEventListener("click", function(event){
         event.preventDefault()
+        submit();
       }); 
-    
-    document.querySelector("#submit").addEventListener("click", submit);
     
     document.querySelectorAll(".filter").forEach((button) => {
         button.addEventListener("click", filterClick);
