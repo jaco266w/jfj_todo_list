@@ -55,7 +55,7 @@ function submit() {
         const item2 = {...item};
         item2.description = document.querySelector("#new_description").value;
         item2.type = document.querySelector("#new_type").value;
-        item2.id = idCounter++;
+        item2.id = ++idCounter;
         
         allItems.push(item2);
         displayList(allItems);
